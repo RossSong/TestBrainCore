@@ -113,25 +113,25 @@ class TextClassifier {
         return arrayProb
     }
     
-    func buildIDF(_ dict: Dictionary<String,String>) {
-        var array = Array<Int>(repeating: 0, count: arrayTotalGram.count)
+    func buildIDF(_ array: Array<(key: String, value: String)>) {
+        var arrayNew = Array<Int>(repeating: 0, count: arrayTotalGram.count)
         var indexBi = 0
         for bi in arrayTotalGram {
-            for item in dict {
+            for item in array {
                 if item.value.contains(bi) {
-                    array[indexBi] = array[indexBi] + 1
+                    arrayNew[indexBi] = arrayNew[indexBi] + 1
                 }
             }
             indexBi += 1
         }
         
-        self.arrayIDF = array
+        self.arrayIDF = arrayNew
     }
     
-    func buildClassAndNGram(_ dict: Dictionary<String, String>) {
+    func buildClassAndNGram(_ array: Array<(key: String, value: String)>) {
         //전체 클래스에 대한 bigram 을 구함.
         arrayClass = Array<String>()
-        for item in dict {
+        for item in array {
             arrayClass?.append(item.key)
             var arrayUni = ngram(item.value, type:.Unigram)
             let arrayBi = ngram(item.value)
@@ -152,14 +152,14 @@ class TextClassifier {
         }
     }
     
-    func train(_ dict: Dictionary<String,String>) {
-        buildClassAndNGram(dict)
-        buildIDF(dict)
+    func train(_ array: Array<(key: String, value: String)>) {
+        buildClassAndNGram(array)
+        buildIDF(array)
         
-        var arrayDataArrayProb = Array<[Double]>(repeating:Array<Double>(), count: dict.count)
+        var arrayDataArrayProb = Array<[Double]>(repeating:Array<Double>(), count: array.count)
         
         var index = 0
-        for item in dict {
+        for item in array {
             let arrayProb = getArrayProb(item.value)
             arrayDataArrayProb[index] = arrayProb
             index = index + 1
@@ -199,7 +199,7 @@ class TextClassifier {
         }
         
         model?.predictValues(data: testData)
-        
+
         //  See if we matched
         var classLabel : Int
         
