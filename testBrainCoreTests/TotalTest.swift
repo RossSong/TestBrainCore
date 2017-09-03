@@ -50,7 +50,6 @@ class TotalTest: XCTestCase {
         
         let classifier = TextClassifier()
         classifier.train(dictTrain)
-        classifier.train(dictTrain)
 
         let dictTest = ["company" : "현대중공업", "tel" : "010-6554", "email": "test@gmail.com", "duty": "Designer"]
         
