@@ -23,7 +23,12 @@ class TextClassifier {
     func getF(_ frequency:Int, countOfGramInDocument: Int) -> Double {
         //단어내에 term(한글자, 두글자)가 찾아진 확률??
         //return log( Double(frequency)/Double(countOfGramInDocument) + 1)
-        return Double(frequency)/Double(countOfGramInDocument)
+        //return Double(frequency)/Double(countOfGramInDocument)
+        if frequency > 0 {
+            return 1.0
+        }
+        
+        return 0.0
     }
     
     func getTF(_ frequency:Int, countOfGramInDocument: Int, maxFrequency: Int) -> Double {
