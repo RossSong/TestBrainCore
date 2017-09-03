@@ -874,14 +874,14 @@ public class SVMModel
         if ((type == .C_SVM_Classification || type == .ν_SVM_Classification) && probabilityA.count > 0 && probabilityB.count > 0) {
             let data = DataSet(dataType: .Classification, inputDimension: inputs.count, outputDimension: 1)
             do {
-                try data.addDataPoint(input: inputs, output: numClasses)
+                try data.addDataPoint(input: inputs, output: [0.0])
             }
             catch {
                 print("dimension error on inputs")
             }
             predictValues(data: data)
             let minProbability = 1e-7
-            var pairwiseProbability = Array<[Double]>(repeating: Array<Double>(repeating: 0.0, count: numClasses), count: numClasses)
+            var pairwiseProbability : [[Double]] = []
             var k = 0
             for i in 0..<numClasses-1 {
                 for j in i+1..<numClasses {
