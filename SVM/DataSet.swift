@@ -80,7 +80,7 @@ public class DataSet {
         }
     }
     
-    public func includeEntries(fromDataSet fromDataSet: DataSet, withEntries: [Int]) throws
+    public func includeEntries(fromDataSet: DataSet, withEntries: [Int]) throws
     {
         //  Make sure the dataset matches
         if dataType != fromDataSet.dataType { throw DataTypeError.InvalidDataType }
@@ -124,7 +124,7 @@ public class DataSet {
         }
     }
     
-    public func addDataPoint(input input : [Double], output: [Double]) throws
+    public func addDataPoint(input : [Double], output: [Double]) throws
     {
         //  Validate the data
         if (dataType != .Regression) { throw DataTypeError.DataWrongForType }
@@ -136,7 +136,7 @@ public class DataSet {
         outputs!.append(output)
     }
     
-    public func addDataPoint(input input : [Double], output: Int) throws
+    public func addDataPoint(input : [Double], output: Int) throws
     {
         //  Validate the data
         if (dataType != .Classification) { throw DataTypeError.DataWrongForType }
@@ -157,7 +157,7 @@ public class DataSet {
         classes![index] = newClass
     }
     
-    public func addTestDataPoint(input input : [Double]) throws
+    public func addTestDataPoint(input : [Double]) throws
     {
         //  Validate the data
         if (input.count != inputDimension) { throw DataTypeError.WrongDimensionOnInput }
@@ -180,7 +180,7 @@ public class DataSet {
     {
         //  Get the ordered array of indices
         var shuffledArray: [Int] = []
-        for i in 0..<inputs.count - 1 { shuffledArray.append(i) }
+        for i in 0..<inputs.count { shuffledArray.append(i) }
         
         // empty and single-element collections don't shuffle
         if size < 2 { return shuffledArray }
