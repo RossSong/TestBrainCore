@@ -34,7 +34,7 @@ class TotalTest: XCTestCase {
     }
     
     func testAAA() {
-        let company = "(주) (주)가 (주)가나 (주)가나다 (주)가나다라 (주)엠피알디 (주)교보정보시스템(일본) BBDOkorea BNCS CDR Associates Capital CJ 오쇼핑 Wantedlab wantedlab 원티드 Google google 중공업(주) 삼성전자 구글 선데이토즈 레스토랑 센터 (주)투비소프트 (주)뱅크타운 (사)대한전자공학회 공병단 휴맥스 비행단 여단 부대 사무소 법인 연구소 대대 연대 연합 흥국화재 삼성화재 현대카드 삼성카드 Co,.Ltd (주)디자인 (주)더블유 (주)디파이 (주)한글 금고 은행"
+        let company = "(주) (주)가 (주)가나 (주)가나다 (주)가나다라 (주)엠피알디 (주)교보정보시스템(일본) BBDOkorea BNCS CDR Associates Capital CJ 오쇼핑 Wantedlab wantedlab 원티드 Google google 중공업(주) 삼성전자 구글 선데이토즈 레스토랑 센터 (주)투비소프트 (주)뱅크타운 (사)대한전자공학회 공병단 휴맥스 비행단 여단 부대 사무소 법인 연구소 대대 연대 연합 흥국화재 삼성화재 현대카드 삼성카드 Co,.Ltd (주)디자인 (주)더블유 (주)디파이 (주)한글 금고 은행 Inc."
         
         let duty = "Developer developer Designer designer QA qa Manager manager 개발자 디자이너 영업 기획 iOS ios Android android Backend backend"
         
@@ -65,5 +65,7 @@ class TotalTest: XCTestCase {
         debugPrint(classifier.predict("02 032"))
         debugPrint(classifier.predict("abc@abc.com"))
         debugPrint(classifier.predict("hgsong@wantedlab.com"))
+        debugPrint(classifier.predict("Wantedlab Inc."))
+        debugPrint(classifier.predict(dictTest["duty"]!))
     }
 }
