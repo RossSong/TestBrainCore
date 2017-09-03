@@ -38,7 +38,7 @@ class TotalTest: XCTestCase {
         
         let duty = "Developer developer Designer designer QA qa Manager manager 개발자 디자이너 영업 기획 iOS ios Android android Backend backend"
         
-        let tel = "123 - 010 2279 2279"
+        let tel = "123 - 010 2279 2279 1-2 -2 02 0123456789"
         let email = "@ .COM .com .CO .co .CO.KR .co.kr"
         let address = "서울특별시 서초구 Building building 빌딩 Tower tower 타워 Floor floor 층"
     
@@ -49,6 +49,7 @@ class TotalTest: XCTestCase {
                          "address": address]
         
         let classifier = TextClassifier()
+        classifier.train(dictTrain)
         classifier.train(dictTrain)
 
         let dictTest = ["company" : "현대중공업", "tel" : "010-6554", "email": "test@gmail.com", "duty": "Designer"]
@@ -63,6 +64,8 @@ class TotalTest: XCTestCase {
         
         debugPrint(dictTest["tel"])
         debugPrint(classifier.predict("02 032"))
+        debugPrint(classifier.predict("-6554"))
+        debugPrint(classifier.predict("016-"))
         debugPrint(classifier.predict("abc@abc.com"))
         debugPrint(classifier.predict("hgsong@wantedlab.com"))
         debugPrint(classifier.predict("Wantedlab Inc."))
